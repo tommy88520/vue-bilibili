@@ -10,17 +10,11 @@
     <div id="root">
       <ul>
         <!-- <li v-for="p in person" :key="p.id"> -->
-        <li v-for="(p, index) in person" :key="p.index">
-          {{p.id}}
+        <li v-for="(p, index) in person" :key="p.id">
+          {{p.id}} -- {{ p.name }}
         </li>
       </ul>
-
-      <h2>汽車</h2>
-      <ul>
-        <li v-for="(v, k) of car" :key="k">
-          {{ k }} -- {{ v }}
-        </li>
-      </ul>
+      <button @click="add">+++</button>
     </div>
     <script src="../vue.js"></script>
     <script>
@@ -32,13 +26,16 @@
             {id:'001', age:18, name:'tommy'},
             {id:'002', age:22, name:'emma'},
             {id:'003', age:13, name:'jake'}
-          ],
-          car: {
-            name : '奧迪a8', 
-            price : '70萬', 
-            color: 'black'
-          }
+          ]
         },
+        methods: {
+          add() {
+            this.person.unshift({
+              id:'004', age:20, name:'tom'
+            
+          })
+          }
+        }
       });
     </script>
   </body>
