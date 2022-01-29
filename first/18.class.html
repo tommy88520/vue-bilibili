@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .basic{
+        height: 300px;
+        width: 300px;
+        background-color: antiquewhite;
+      }
+      .normal{
+        font-size: 2rem;
+      }
+      .happy {
+        font-size: 10rem;
+      }
+      .sad {
+        font-size: 20rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div  class="basic" :class="mood">{{ name }}</div>
+      <button @click="changeMood"> 切換class</button>
+      <div  class="basic" :class="classArr">{{ name }}</div>
+      <button @click="removeClass"> 移除class</button>
+      <button @click="addClass"> 新增class</button>
+
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+      new Vue({
+        el: "#root",
+        data: {
+          name: "Tommy",
+          mood: true,
+          classArr: ['happy', 'normal', 'sad'],
+        },
+        methods: {
+          changeMood(){
+            const arr = ['happy', 'normal', 'sad']
+            const index = Math.floor(Math.random() * arr.length)
+            
+            this.mood = arr[index]
+          },
+          removeClass(){
+            this.classArr.shift()
+
+          },
+          addClass(){
+            this.classArr.pop()
+
+          }
+        },
+        computed: {
+          // moodClass(){
+          //   return this.mood ? 'normal' : 'happy'
+          // }
+        }
+      });
+    </script>
+  </body>
+</html>

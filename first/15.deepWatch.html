@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <h2>天氣{{info}}</h2>
+      <button @click="change">更換天氣</button>
+      <h3> a 的差值是 {{ numbers.a }}</h3>
+      <button @click="numbers.a++">a+1</button>
+      <h3> b 的差值是 {{ numbers.b }}</h3>
+      <button @click="numbers.b++">b+1</button>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+      const vm = new Vue({
+        el: "#root",
+        data: {
+          weathering: true,
+          numbers: {
+            a:1,
+            b:2
+          }
+        },
+        computed: {
+          info(){
+            return this.weathering ? 'hot' : 'cold'
+            console.log(this.weather);
+          }
+        },
+        methods:{
+          change(){
+            this.weathering = !this.weathering
+          }
+        },
+        watch: {
+          weathering:{
+            //這個默認是false
+            immediate:true,
+            handler(newV, oldV){
+              console.log(123);
+            }
+          },
+          numbers:{
+            handler(){
+              console.log('a被改變了');
+            },
+            deep: true,
+          }
+        },
+
+      });
+
+    </script>
+  </body>
+</html>
