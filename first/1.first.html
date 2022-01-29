@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <h1>hello , {{name.toUpperCase()}}, {{address}}, {{Date.now()}}</h1>
+      <a v-bind:href="url">hi</a>
+      <a :href="url">hi</a>
+      <!-- 簡寫 -->
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+      Vue.config.productionTip = false;
+      new Vue({
+        el: "#root",
+        data: {
+          name: "huionion",
+          address: "台北市",
+          url: "https://www.yourator.co/companies/25sprout",
+        },
+      });
+    </script>
+  </body>
+</html>

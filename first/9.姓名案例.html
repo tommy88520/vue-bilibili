@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      性: <input type="text" v-model="firstName" >
+      名: <input type="text" v-model="lastName" >
+      <!-- 全名： <span>{{firstName.slice(0,3)} -- {{lastName}}}</span> -->
+      全名： <span>{{fullName()}}</span>
+
+      
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+      new Vue({
+        el: "#root",
+        data: {
+          firstName: "Tommy",
+          lastName: "Huang"
+        },
+        methods: {
+          fullName(){
+            return this.firstName.slice(0,3) + '-' + this.lastName
+          }
+        }
+      });
+    </script>
+
+
+  </body>
+</html>

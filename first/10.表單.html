@@ -1,0 +1,28 @@
+<div id="myvue">
+  <!--阻止表單傳播事件（用@submit.prevent）去執行mysubmit函式-->
+  <form action="1.html" @submit.prevent="mysubmit">
+      使用者名稱：<input type="text" value="" v-model="user.username"><br>
+      密碼：<input type="password" value="" v-model="user.password"><br>
+          <Br><Br>
+      <input type="submit" value="註冊">
+  </form>
+</div>
+<script src="../vue.js"></script>
+<script>
+  var vm=new  Vue({
+      el:'#myvue',
+      data:{
+          user:{
+              username:'',
+              password:'',
+          },
+          //可選城市的下拉選項
+          optionalCities:[{id:1,name:'xa'},{id:2,name:'bj'},{id:3,name:'jn'}]
+      },
+      methods:{
+          mysubmit(){
+              console.log(JSON.stringify(this.user)) //列印傳輸的資料,轉換為json資料用JSON.stringifiy（）
+          }
+      }
+  })
+</script>

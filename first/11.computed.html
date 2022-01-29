@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      性: <input type="text" v-model="firstName" >
+      名: <input type="text" v-model="lastName" >
+      <!-- 全名： <span>{{firstName.slice(0,3)} -- {{lastName}}}</span> -->
+      全名： <span>{{fullName}}</span>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+      const vm = new Vue({
+        el: "#root",
+        data: {
+          firstName: "Tommy",
+          lastName: "Huang"
+        },
+        computed: {
+          fullName:{
+            get(){
+              console.log('123213');
+              return this.firstName + '-' + this.lastName 
+            },
+            set(value){
+              console.log(value);
+              const arr = value.split('-');
+              this.firstName = arr[0];
+              this.lastName = arr[1]
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
