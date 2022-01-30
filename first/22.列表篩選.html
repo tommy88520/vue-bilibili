@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <input type="text" v-model="keyWord">
+      <ul>
+        <!-- <li v-for="p in person" :key="p.id"> -->
+        <li v-for="(p, index) in filPerson" :key="p.id" >
+          {{ p.name}}--{{ p.age }}-- {{ p.sex }}
+        </li>
+      </ul>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+      new Vue({
+        el: "#root",
+        data: {
+          keyWord: '',
+          person: [
+            {id:'001', age:18, name:'周冬雨', sex: 'female'},
+            {id:'002', age:22, name:'馬冬梅', sex: 'female'},
+            {id:'003', age:13, name:'周杰倫', sex: 'male'},
+            {id:'004', age:45, name:'溫兆倫', sex: 'male'}
+          ],
+          filPerson: []
+        },
+        watch:{
+          keyWord: {
+            immediate: true,
+            handler(val) {
+              this.filPerson = this.person.filter((p)=>{
+              return p.name.indexOf(val) !== -1
+            })
+            }
+          }
+        }
+        
+      });
+    </script>
+  </body>
+</html>

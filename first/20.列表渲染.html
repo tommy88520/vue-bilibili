@@ -8,6 +8,8 @@
   </head>
   <body>
     <div id="root">
+      <h3>人員列表</h3>
+      <button @click="updateMei"></button>
       <ul>
         <!-- <li v-for="p in person" :key="p.id"> -->
         <li v-for="(p, index) in person" :key="p.index">

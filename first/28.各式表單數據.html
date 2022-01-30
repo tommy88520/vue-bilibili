@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <form @submit.prevent="demo">
+        <label for="account">帳號</label>
+        <input type="text" id="account" v-model="userInfo.account"> <br>
+        <label for="password">密碼</label>
+        <input type="password" id="password" v-model="userInfo.password"><br>
+        <!-- 簡單表單驗證 -->
+        <label for="age">年齡</label>
+        <input type="number" id="age" v-model.number.trim="userInfo.age"><br>
+        <!-- 以上 -->
+        男<input type="radio" name="sex" v-model="userInfo.sex" value="male">
+        女<input type="radio" name="sex" v-model="userInfo.sex" value="female"><br>
+
+        愛好：<input type="checkbox" v-model="userInfo.hobby" value="study">
+        打遊戲：<input type="checkbox" v-model="userInfo.hobby" value="game">
+        吃飯：<input type="checkbox" v-model="userInfo.hobby" value="eat"><br>
+
+        所屬校區
+        <select v-model="userInfo.city">
+          <option value="">請選擇</option>
+          <option value="taipei">台北</option>
+          <option value="taichungan">台中</option>
+          <option value="tainan">台南</option>
+        </select><br>
+        其他訊息
+        <textarea v-model="userInfo.other"></textarea><br>
+
+        <input type="checkbox" v-model="userInfo.agree">接受<br>
+        <button>Submit</button>
+      </form>
+
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+      new Vue({
+        el: "#root",
+        data: {
+         userInfo: {
+           account:'',
+          password: '',
+          // age: '',
+          sex: '',
+          hobby:[],
+          city:'',
+          other:'',
+          agree:''
+        }
+        },
+        methods: {
+          demo(){
+            console.log(JSON.stringify(this.userInfo));
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

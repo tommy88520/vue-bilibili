@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <ul>
+        <li v-for="(p, index) in student.hobby" :key="p.index" >
+          {{ p }}
+        </li>
+      </ul>
+
+      姓名年齡
+      <ul>
+        <li v-for="(p, index) in student.friends" :key="p.id" >
+          {{ p.name }} -- {{ p.age }} -- {{ p.sex }}
+        </li>
+      </ul>
+      <button @click="addSex">增加性別</button>
+      <button @click="addFriends">增加朋友</button>
+      <button @click="updateName">更改朋友名</button>
+      <button @click="updateHobby">更改嗜好</button>
+      <button @click="removeHobby">過濾嗜好</button>
+
+
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+      const vm = new Vue({
+        el: "#root",
+        data: {
+          // 初始不存在的直無法後天進行新增，新增後也不悖vue所管理
+          // 因此要使用set()
+          student: {
+            name: 'tom',
+            age: '36',
+            hobby: ['抽菸', '喝酒', '燙頭'],
+            friends: [
+              {id:'001', age:18, name:'周冬雨'},
+              {id:'002', age:22, name:'馬冬梅'},
+            ],
+          }
+        },
+        methods: {
+          addSex(){
+            // Vue.set(this.student.friends[1],'sex','male')
+            vm.$set(this.student.friends[1],'sex','male')
+          },
+          addFriends(){
+            this.student.friends.unshift({id:'003', age:13, name:'周杰倫', sex: 'male'},)
+          },
+          updateName(){
+            this.student.friends[0].name = '劉德華'
+          },
+          updateHobby(){
+            // this.student.hobby.splice( 0, 1, '健身')
+            vm.$set(this.student.hobby, 0,'健身')
+          },
+          removeHobby(){
+            this.student.hobby = this.student.hobby.filter((h)=>{
+              return h !== '抽菸'
+            })
+          }
+        }
+        
+      });
+    </script>
+  </body>
+</html>
