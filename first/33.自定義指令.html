@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <h2>當前的直 {{n}}</h2>
+      <!-- 多個單字命名法 -->
+      <h3 v-big-test="n">放大後的指令</h3>
+
+      <hr>
+      <input type="text" v-fbind:value="n">
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+      new Vue({
+        el: "#root",
+        data: {
+          n: 1
+        },
+        directives: {
+          // 這邊要寫完引號
+          'big-text'(e,binding){
+            // 這個e是真實dom
+            // big()有兩種時機會被解析，1.綁定好時,2.整個模板被重新解析時
+            console.log(binding)
+            e.innerText = binding.value * 10
+          },
+          fbind: {
+            bind(e, binding){
+              console.log('bind');
+              e.value = binding.value
+            },
+            inserted(e, binding){
+              console.log('inserted');
+              e.focus
+            },
+            update(){
+              console.log('update');
+              e.value = binding.value
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

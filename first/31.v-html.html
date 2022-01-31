@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 這兩個一樣 -->
+      <h3>{{ name }}</h3>
+      <h3 v-text="str"></h3>
+
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+      new Vue({
+        el: "#root",
+        data: {
+          name: "Tommy",
+          str: '<h2>hi2hi3hi<h3>'
+        },
+      });
+    </script>
+  </body>
+</html>
