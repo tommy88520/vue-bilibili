@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <h2>數字是 {{count}}</h2>
+      <button @click="add">+1</button>
+      <button @click="bye">銷毀吧</button>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+      new Vue({
+        el: "#root",
+        // template:`
+        //   <div>
+        //     <h2>數字是 {{count}}</h2>
+        //     <button @click="add">+1</button>
+        //   </div>
+        // `,
+        data: {
+          count: 1,
+        },
+        methods: {
+          add(){
+            this.count += 1
+          },
+          bye(){
+            console.log('bye');
+            this.$destroy();
+          }
+        },
+        beforeCreate() {
+          console.log('beforeCreate');
+          console.log('beforeCreate',this);
+        },
+        created(){
+          console.log('created');
+          console.log('created',this);
+        },
+        beforeMount(){
+          // 在這裡操作真實dom也沒用
+          console.log('beforeMount');
+          console.log('beforeMount',this);
+        },
+        mounted() {
+          console.log('mounted');
+          console.log('mounted',this);
+          //發ajax
+        },
+        beforeUpdater() {
+          console.log('beforeUpdater');
+          console.log('mounted',this.n);
+        },
+        updated() {
+          console.log('updated');
+        },
+      });
+    </script>
+  </body>
+</html>

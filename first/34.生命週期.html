@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <h2 :style="{ opacity:opacity }">123456789</h2>
+      <button @click="stop">點我停止</button>
+      <button @click="stop">透明度設置為一</button>
+
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+      new Vue({
+        el: "#root",
+        data: {
+          opacity: 1,
+        },
+        // vue完成模板解析 並把真實dom放入頁面
+        mounted() {
+          console.log('123');
+          this.timer = setInterval(() => {
+            this.opacity -= 0.01
+            if(this.opacity <= 0) this.opacity = 1
+          }, 16);
+        },
+        methods: {
+          stop(){
+            clearInterval(this.timer)
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

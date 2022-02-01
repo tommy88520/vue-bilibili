@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <h1>{{ msg }}</h1>
+      <school></school>
+      <hr>
+      <student></student>
+    </div>
+    <div id="root2">
+      <hello></hello>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+    Vue.config.productTip = false
+    const school = Vue.extend({
+      //name: '自定義名字',
+      template:`
+        <div>
+          <h2>學校名稱:{{schoolName}}</h2>
+          <h2>學校地址:{{address}}</h2>
+          
+        </div>
+      `,
+      data() {
+        return{
+          schoolName: "政大大學",
+          address:'木柵',
+        }
+      }
+    })
+    // 組件簡寫法
+    const school2 = {
+      //name: '自定義名字',
+      template:`
+        <div>
+          <h2>學校名稱:{{schoolName}}</h2>
+          <h2>學校地址:{{address}}</h2>
+          
+        </div>
+      `,
+      data() {
+        return{
+          schoolName: "政大大學",
+          address:'木柵',
+        }
+      }
+    }
+
+    const student = Vue.extend({
+      template:`
+        <div>
+          <h2>學生姓名:{{studentName}}</h2>
+          <h2>學生年齡:{{age}}</h2>
+        </div>
+      `,
+      data() {
+        return{
+          studentName: 'Tommy',
+          age: 18
+        }
+      }
+    })
+    const hello = Vue.extend({
+      template:`
+        <div>
+          <h2>{{ name }}</h2>
+        </div>
+      `,
+      data(){
+        return {
+          name: '張三'
+        }
+      }
+    })
+    // 全域註冊方式
+      Vue.component('hello',hello)
+      new Vue({
+        el: "#root",
+        data:{
+          msg: '你好啊'
+        },
+        components:{
+          school,
+          student
+        }
+      });
+      new Vue({
+        el: '#root2',
+      })
+    </script>
+  </body>
+</html>
