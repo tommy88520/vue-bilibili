@@ -24,7 +24,8 @@
   </head>
   <body>
     <div id="root">
-      <div  class="basic" :class="mood">{{ name }}</div>
+      <div  class="basic" :class="mood ? 'normal': 'happy' ">{{ name }}</div>
+      <button @click="changeMood"> 切換class</button>
       <button @click="changeMood"> 切換class</button>
       <div  class="basic" :class="classArr">{{ name }}</div>
       <button @click="removeClass"> 移除class</button>
@@ -43,10 +44,11 @@
         },
         methods: {
           changeMood(){
-            const arr = ['happy', 'normal', 'sad']
-            const index = Math.floor(Math.random() * arr.length)
+            // const arr = ['happy', 'normal', 'sad']
+            // const index = Math.floor(Math.random() * arr.length)
             
-            this.mood = arr[index]
+            // this.mood = arr[index]
+            this.mood = !this.mood
           },
           removeClass(){
             this.classArr.shift()
